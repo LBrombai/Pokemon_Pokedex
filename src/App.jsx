@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState } from "react";
 import pokemonData from "./assets/pokemonData";
 import { getAllItems, getPokemonByItem } from "./utils/itemUtils";
@@ -5,7 +6,6 @@ import SearchBar from "./components/SearchBar";
 import PokemonCard from "./components/PokemonCard";
 import ItemCard from "./components/ItemCard";
 
-import "./App.css";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -29,91 +29,94 @@ function App() {
     setSelectedItem(null);
   }
 
-  return (
+return (
     <>
+        <header className="app-header">
+            <h1>Pokédex Drops</h1>
+            <p>Encontre os drops de qualquer Pokémon</p>
+        </header>
 
+        <SearchBar
+            search={search}
+            setSearch={handleSearch}
+        />
 
-      <header className="app-header">
-         <h1>Pokédex Drops</h1>
-         <p>Encontre os drops de qualquer Pokémon</p>
-      </header>
+        {!selectedPokemon && !selectedItem && search.trim() && (
+            <div className="search-results">
 
-      <SearchBar search={search} setSearch={handleSearch} />
-{!selectedPokemon && search.trim() && (
-    <div className="search-results">
+                {pokemon.length > 0 && (
+                    <section>
+                        <h3>Pokémon</h3>
 
-        {pokemon.length > 0 && (
-            <section>
-                <h3>Pokémon</h3>
+                        <ul className="pokemon-list">
+                            {pokemon.map((item) => (
+                                <li
+                                    key={item.name}
+                                    className="pokemon-item"
+                                >
+                                    <button
+                                        className="pokemon-button"
+                                        onClick={() =>
+                                            setSelectedPokemon(item)
+                                        }
+                                    >
+                                        {item.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
 
-                <ul className="pokemon-list">
-                    {pokemon.map((item) => (
-                        <li
-                            key={item.name}
-                            className="pokemon-item"
-                        >
-                            <button
-                                className="pokemon-button"
-                                onClick={() =>
-                                    setSelectedPokemon(item)
-                                }
-                            >
-                                {item.name}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+                {filteredItems.length > 0 && (
+                    <section>
+                        <h3>Itens</h3>
+
+                        <ul className="pokemon-list">
+                            {filteredItems.map((item) => (
+                                <li
+                                    key={item}
+                                    className="pokemon-item"
+                                >
+                                    <button
+                                        className="pokemon-button"
+                                        onClick={() => setSelectedItem(item)}
+                                    >
+                                        {item}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+
+                {pokemon.length === 0 &&
+                    filteredItems.length === 0 && (
+                        <p>No results found.</p>
+                    )}
+            </div>
         )}
 
-        {filteredItems.length > 0 && (
-            <section>
-                <h3>Itens</h3>
-
-                <ul className="pokemon-list">
-                    {filteredItems.map((item) => (
-                        <li
-                            key={item}
-                            className="pokemon-item"
-                        >
-                            <button
-                                className="pokemon-button" onClick={() => {
-    setSelectedItem(item);
-    setSearch("");
-}}
-                            >
-                                {item}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+        {selectedPokemon && (
+            <PokemonCard
+                pokemon={selectedPokemon}
+                onSelectItem={(item) => {
+                    setSelectedItem(item);
+                    setSelectedPokemon(null);
+                }}
+            />
         )}
 
-        {pokemon.length === 0 && filteredItems.length === 0 && (
-            <p>No results found.</p>
+        {selectedItem && (
+            <ItemCard
+                item={selectedItem}
+                onSelectPokemon={(pokemon) => {
+                    setSelectedPokemon(pokemon);
+                    setSelectedItem(null);
+                }}
+            />
         )}
-
-    </div>
-)}
-
-
-      {selectedPokemon && (
-          <PokemonCard pokemon={selectedPokemon} />
-    
-)}
-      {selectedItem && (
-          <ItemCard
-    item={selectedItem}
-    onSelectPokemon={(pokemon) => {
-        setSelectedPokemon(pokemon);
-        setSelectedItem(null);
-    }}
-/>
-)}
     </>
-  );
-}
-
+)};
 
 export default App;

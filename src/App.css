@@ -119,6 +119,7 @@ body {
   transform: translateY(-2px);
 
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  background: #e5e5e5;
 }
 
 
@@ -157,6 +158,8 @@ body {
   border-radius: 12px;
 
   transition: .2s ease;
+
+  cursor: pointer;
 }
 
 .drop-header {
@@ -402,16 +405,34 @@ body {
     color: #444;
 }
 
-.item-pokemon-button {
+.item-pokemon-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 12px 16px;
+
     border: none;
-    padding: 0;
-    background: none;
+    border-radius: 8px;
+
+    background: #f1f1f1;
+
     font: inherit;
-    font-weight: bold;
+    text-align: left;
+
     cursor: pointer;
 }
 
-.item-pokemon-button:hover {
-    text-decoration: underline;
+.item-pokemon-row:hover {
+    background: #e5e5e5;
+}
+
+.item-pokemon-row strong {
+    min-width: 120px;
+}
+
+.item-pokemon-row span {
+    color: #444;
 }
 /*------------------------------------------------------------------------------*/

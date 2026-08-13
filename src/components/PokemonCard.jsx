@@ -5,7 +5,7 @@ import pokemonTypes from "../data/pokemonTypes.json";
 import TypeBadge from "./TypeBadge";
 import { getEffectiveness } from "../utils/typeCalculator";
 
-function PokemonCard({ pokemon }) {
+function PokemonCard({ pokemon, onSelectItem }) {
 
   console.log(pokemon);
 
@@ -101,7 +101,8 @@ console.log("Effectiveness:", effectiveness);
           const image = getItemImage(item.name);
 
           return (
-            <li key={item.name} className="drop-item">
+            <li key={item.name} className="drop-item"
+            onClick={() => onSelectItem(item.name)}>
               {image && (
                 <img
                   src={image}

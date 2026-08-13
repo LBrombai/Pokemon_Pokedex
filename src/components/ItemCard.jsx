@@ -27,11 +27,10 @@ function ItemCard({ item, onSelectPokemon }) {
         {results.map(({ pokemon, drop }) => (
             <li key={pokemon.id}>
                 <button
-                     className="item-pokemon-button"
+                     className="item-pokemon-row"
                      onClick={() => onSelectPokemon(pokemon)}
                 >
-                    {pokemon.name}
-                </button>
+                    <strong>{pokemon.name}</strong>
 
                 <span>
                     Chance: {drop.chance}%
@@ -40,6 +39,7 @@ function ItemCard({ item, onSelectPokemon }) {
                 <span>
                     Quantidade: {drop.quantity.min} - {drop.quantity.max}
                 </span>
+                </button>
             </li>
         ))}
     </ul>
