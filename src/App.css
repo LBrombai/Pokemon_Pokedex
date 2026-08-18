@@ -5,21 +5,6 @@ body {
 }
 
 
-.pokemon-card {
-  width: 700px;
-
-  position: relative;
-
-  margin: 0 auto 40px;
-
-  background: white;
-
-  border-radius: 18px;
-
-  padding: 30px;
-
-  box-shadow: 0 10px 30px rgba(0,0,0,.10);
-}
 
 .pokemon-card h2 {
   color: black;
@@ -115,6 +100,32 @@ body {
 
 /*Drops*/
 
+.kills-input {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.drop-simulator-result {
+    display: flex;
+    align-items: center;
+}
+
+.drop-simulator-result strong {
+    width: 150px;
+}
+
+
+.drops-column {
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .pokemon-content {
+        grid-template-columns: 1fr;
+    }
+}
+
 .drop-item:hover {
   transform: translateY(-2px);
 
@@ -135,6 +146,8 @@ body {
 .drop-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .drop-info p {
@@ -144,7 +157,7 @@ body {
 .drop-item {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 
   width: 100%;
   box-sizing: border-box;
@@ -166,8 +179,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  gap: 6px;
   margin-bottom: 6px;
+}
+
+.drop-header strong {
+    white-space: nowrap;
 }
 
 .drop-chance {
@@ -228,68 +245,78 @@ body {
 
 
 .pokemon-content {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .pokemon-left {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 .pokemon-right {
-  flex: 1.5;
+    min-width: 0;
 }
+
 
 .drop-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 420px;
+  max-width: 100%;
 }
 
 /*Pokeball Background*/
 .pokemon-card {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
+
+    width: min(780px, 90%);
+    box-sizing: border-box;
+
+    margin: 0 auto 40px;
+
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .10);
 }
 
 .watermark {
-  position: absolute;
-  inset: 0;
-  left: -40px;
+    position: absolute;
+    inset: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .watermark img {
-  width: 250px;
-  opacity: 0.8;
+    width: 100%;
+    height: 100%;
 }
 
 .pokemon-header,
 .pokemon-content {
   position: relative;
   z-index: 1;
+  
 }
 
 
 
 
 .pokemon-image-wrapper {
-  position: relative;
-
-  width: 240px;
-  height: 240px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   position: relative;
 }
 
 
