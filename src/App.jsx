@@ -2,9 +2,10 @@ import "./App.css";
 import { useState } from "react";
 import pokemonData from "./assets/pokemonData";
 import { getAllItems, getPokemonByItem } from "./utils/itemUtils";
-import SearchBar from "./components/SearchBar";
 import PokemonCard from "./components/PokemonCard";
+import SearchBar from "./components/SearchBar";
 import ItemCard from "./components/ItemCard";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -29,12 +30,29 @@ function App() {
     setSelectedItem(null);
   }
 
+  function handleHome() {
+    setSearch("");
+    setSelectedPokemon(null);
+    setSelectedItem(null);
+}
+
 return (
     <>
-        <header className="app-header">
-            <h1>Pokédex Drops</h1>
-            <p>Encontre os drops de qualquer Pokémon</p>
-        </header>
+
+{(search || selectedPokemon || selectedItem) && (
+    <header className="app-header">
+        <button
+            className="app-logo"
+            onClick={handleHome}
+        >
+            Pokédex Drops
+        </button>
+    </header>
+)}
+
+        {!search.trim() && (
+            <HomePage />
+        )}
 
         <SearchBar
             search={search}
@@ -117,6 +135,7 @@ return (
             />
         )}
     </>
-)};
+    );
+}
 
 export default App;
